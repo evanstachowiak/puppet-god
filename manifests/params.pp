@@ -16,7 +16,7 @@ class god::params {
   case $::operatingsystem {
     /(?i-mx:debian|ubuntu)/: {
       $use_rvm           = 'true'
-      $rvm_bin           = '/usr/local/rvm/bin/rvm'
+      $rvm_path          = '/usr/local/rvm/bin'
       $rvm_gem_path      = '/usr/local/rvm/gems'
       $rvm_gemset        = 'global'
       $god_master_erb    = 'master.god.erb'
