@@ -2,7 +2,7 @@ description "God process monitoring"
 
 # When to start and stop  the service
 start on runlevel [2345]
-stop on runlevel [016]
+stop on runlevel [!2345]
 
 # Automatically restart
 respawn
@@ -11,4 +11,4 @@ respawn
 expect fork
 
 # Start god
-exec <% if @use_rvm == 'true' %><%= @rvm_gem_path %>/<%= @ruby_version %>@<%= @rvm_gemset %>/bin/god<% else %>/usr/bin/god<% end %> -l /var/log/god.log -c <%= @god_master_conf %>
+exec <% if @use_rvm == 'true' %>/usr/local/rvm/bin/ruby_god<% else %>/usr/bin/god<% end %> -l /var/log/god.log -c <%= @god_master_conf %> -P /var/run/god.pid
