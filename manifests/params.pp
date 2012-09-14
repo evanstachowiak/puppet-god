@@ -1,6 +1,6 @@
 # Class god::params
 # 
-# All conf settings for candiapp class
+# All default parameters for god class
 #
 # == Parameters
 #
@@ -11,6 +11,7 @@
 #
 # == Requires:
 #
+# This class file is not called directly
 class god::params {
 
   case $::operatingsystem {
