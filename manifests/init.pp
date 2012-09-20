@@ -41,11 +41,19 @@ class god (
   if $use_rvm == 'true' {
     Rvm_system_ruby[$ruby_version] -> Class['god']
 
+    Rvm_gem['god'] -> Exec['create_god_wrapper']
     # Install god with correct RVM
     rvm_gem { 'god':
         ensure       => $ensure,
         ruby_version => "${ruby_version}@${rvm_gemset}",
      }
+
+    # Create rvm wrapper class for god
+    exec { 'create_god_wrapper':
+      command => "${rvm_path}/bin/rvm wrapper ${ruby_version}@${rvm_gemset} ruby ${rvm_path}/gems/${ruby_version}/bin/god",
+      creates => "${rvm_path}/bin/ruby_god",
+    }
+      
   }
   else {
     package { 'god':
