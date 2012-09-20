@@ -18,15 +18,15 @@ class god::service {
 
   if $god::service_provider == 'upstart' {
     File['god_upstart'] -> Service['god']
-  }
 
-  file { 'god_upstart':
-    ensure => $god::ensure,
-    path   => '/etc/init/god.conf',
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-    content => template('god/god.conf.erb'),
+    file { 'god_upstart':
+      ensure => $god::ensure,
+      path   => '/etc/init/god.conf',
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
+      content => template('god/god.conf.erb'),
+    }
   }
 
   service { 'god':
