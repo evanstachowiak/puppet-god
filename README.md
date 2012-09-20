@@ -10,9 +10,12 @@ Installation
 
 1. Copy this directory to your puppet master module path $(git clone https://github.com/evanstachowiak/puppet-god god)
 2. Apply the `god` class to any nodes you want god installed on: 
-  class { 'god::install': }
-3. 
-
+  class { 'god':
+          ruby_version => 'ruby-1.9.3-p194',
+        }
+  god::config { 'unicorn': }
+**Be careful of which gemset god gets installed to. Default is root, but this may have to be
+  changed depending on the project.**
 
 Contributing
 ------------
